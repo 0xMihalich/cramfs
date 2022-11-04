@@ -1,5 +1,6 @@
 import abc
 
+
 class base(metaclass=abc.ABCMeta):
     def __init__(self, _io, _parent=None, _root=None):
         self._io = _io
