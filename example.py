@@ -2,11 +2,10 @@
 from cramfs import cramFS
 
 filename = "example.img" # указываем необходимый образ/диск/байты или объект BytesIO
-offset = 512 # указываем смещение, по которому в файле находится образ cramfs (необязательно)
-size = 64622592 # указываем размер образа (необязательно)
+offset = 512 # указываем смещение, по которому в файле находится образ cramfs (по-умолчанию offset = 0)
 
 # работа с библиотекой
-test = cramFS(filename, offset, size)
+test = cramFS(filename, offset)
 
 # получаем список объектов в корневой папке
 files = test.ls()
@@ -26,3 +25,5 @@ for file in files:
     print(file)
 
 test.cd('/') # возвращаемся в корневую папку
+
+print(test.read('bin/restore.sh').decode()) # выводим скрипт restore.sh из папки bin
