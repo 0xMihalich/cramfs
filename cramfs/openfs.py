@@ -32,7 +32,7 @@ class openfs:
         return self.fileobject.read(size)
 
     def tell(self):
-        return self.fileobject.tell()
+        return self.fileobject.tell()-self.offset
 
     def close(self):
         del self.offset
