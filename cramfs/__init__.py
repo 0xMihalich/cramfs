@@ -1,4 +1,5 @@
-from typing import Tuple
+from io import BytesIO
+from typing import Tuple, Union
 
 from .cramfs import Cramfs
 from .entryes import cramfs_entryes
@@ -14,8 +15,8 @@ class cramFS:
     Доступен просмотр содержимого и чтение файлов
     '''
 
-    def __init__(self, cramfs_bytes: bytes, offset=0, size=0):
-        self.cramfs = Cramfs(openfs(cramfs_bytes, offset, size))
+    def __init__(self, fileobject: Union[str, bytes, BytesIO], offset: int=0):
+        self.cramfs = Cramfs(openfs(fileobject, offset))
         self.superblock = self.cramfs.super_block
         self.root = self.superblock.root
         self.fs = self.root.as_reg_file._io
